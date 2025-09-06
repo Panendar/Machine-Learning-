@@ -2,6 +2,7 @@ from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
+from sklearn.metrics import classification_report, confusion_matrix
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns  
@@ -22,6 +23,7 @@ accuracy = metrics.accuracy_score(y_test, y_pred)
 precision = metrics.precision_score(y_test, y_pred)
 recall = metrics.recall_score(y_test, y_pred)
 F1 = metrics.f1_score(y_test, y_pred)
+report = classification_report(y_test, y_pred, target_names=cancer.target_names)
 confusion = metrics.confusion_matrix(y_test, y_pred)
 TN_TP = confusion[0,0] + confusion[1,1]
 total = confusion.sum()
@@ -35,11 +37,11 @@ print(f"Recall: {recall:.2f}")
 print("==============================")
 print(f"F1-score: {F1:.2f}")
 print("==============================")
+print(f"Classification Report:{report}")
 print("Confusion Matrix:")
 print(confusion)
 print("==============================")
 print(f"Confusion Matrix Metrics Score: {confusion_metrics_score:.2f}")
-
 
 class_names = cancer.target_names  
 
